@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use Test::More tests => 59;
+use Test::More tests => 35;
 use Data::Dump qw( dump );
 
 use_ok('Net::PMP::Client');
@@ -14,7 +14,7 @@ binmode Test::More->builder->failure_output, ":utf8";
 SKIP: {
     if ( !$ENV{PMP_CLIENT_ID} or !$ENV{PMP_CLIENT_SECRET} ) {
         diag "set PMP_CLIENT_ID and PMP_CLIENT_SECRET to test API";
-        skip "set PMP_CLIENT_ID and PMP_CLIENT_SECRET to test API", 57;
+        skip "set PMP_CLIENT_ID and PMP_CLIENT_SECRET to test API", 33;
     }
 
     # basic authn
@@ -53,6 +53,11 @@ SKIP: {
             "urn:collectiondoc:query:profiles"   => "Query for profiles",
             "urn:collectiondoc:query:schemas"    => "Query for schemas",
             "urn:collectiondoc:query:users"      => "Query for users",
+            "urn:collectiondoc:hreftpl:topics"   => "Access topics",
+            "urn:collectiondoc:hreftpl:users"    => "Access users",
+            "urn:collectiondoc:query:topics"     => "Query for topics",
+            "urn:collectiondoc:query:users"      => "Query for users",
+            "urn:collectiondoc:query:collection" => "Query within collection",
         },
         "got expected rel types"
     );
@@ -82,6 +87,10 @@ SKIP: {
             tag              => "http://docs.pmp.io/wiki/Querying-the-API#tag",
             text             => "http://docs.pmp.io/wiki/Querying-the-API#text",
             writeable        => "http://docs.pmp.io/wiki/Querying-the-API#writeable",
+            creator          => "http://docs.pmp.io/wiki/Querying-the-API#creator",
+            item             => "http://docs.pmp.io/wiki/Querying-the-API#item",
+            owner            => "http://docs.pmp.io/wiki/Querying-the-API#owner",
+            itag             => "http://docs.pmp.io/wiki/Querying-the-API#itag",
         },
         "got expected query options"
     );
@@ -97,7 +106,7 @@ SKIP: {
     ok( my $results = $search_results->get_items(),
         "get search_results->get_items()"
     );
-    cmp_ok( $results->total, '>=', 10, ">= 10 results" );
+    cmp_ok( $results->total, '>=', 2, ">= 2 results" );
     diag( 'total: ' . $results->total );
     while ( my $r = $results->next ) {
 
