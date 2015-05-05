@@ -17,18 +17,19 @@ has 'type' => ( is => 'rw', isa => 'Str', required => 1, );
 
 __PACKAGE__->meta->make_immutable();
 
+my %link_blacklist = ( 'href-vars' => 1, 'href-template' => 1, 'meta' => 1 );
+
 sub _bless_links {
     my ( $self, $links ) = @_;
     for my $link (@$links) {
         next if blessed $link;
         my %h = ();
-        for my $opt (
-            qw( hints href method type title pagenum totalitems totalpages rels )
-            )
-        {
-            if ( $link->{$opt} ) {
-                $h{$opt} = $link->{$opt};
-            }
+        for my $attr ( keys %$link ) {
+            next if exists $link_blacklist{$attr};
+            $h{$attr} = $link->{$attr};
+        }
+        if ( $link->{'meta'} ) {
+            $h{media_meta} = $link->{'meta'};
         }
         if ( $link->{'href-vars'} ) {
             $h{vars} = $link->{'href-vars'};
