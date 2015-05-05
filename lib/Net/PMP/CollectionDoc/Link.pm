@@ -7,17 +7,27 @@ use Net::PMP::TypeConstraints;
 
 our $VERSION = '0.004';
 
-has 'hints'      => ( is => 'rw', isa => 'HashRef' );
-has 'template'   => ( is => 'rw', isa => 'Str' );
-has 'vars'       => ( is => 'rw', isa => 'HashRef' );
-has 'rels'       => ( is => 'rw', isa => 'ArrayRef', );
-has 'title'      => ( is => 'rw', isa => 'Str' );
-has 'href'       => ( is => 'rw', isa => 'Net::PMP::Type::Href', coerce => 1, );
-has 'method'     => ( is => 'rw', isa => 'Str' );
-has 'type'       => ( is => 'rw', isa => 'Str' );
-has 'pagenum'    => ( is => 'rw', isa => 'Int' );
+has 'hints'    => ( is => 'rw', isa => 'HashRef' );
+has 'template' => ( is => 'rw', isa => 'Str' );
+has 'vars'     => ( is => 'rw', isa => 'HashRef' );
+has 'rels'     => ( is => 'rw', isa => 'ArrayRef', );
+has 'title'    => ( is => 'rw', isa => 'Str' );
+has 'href'     => ( is => 'rw', isa => 'Net::PMP::Type::Href', coerce => 1, );
+has 'method'   => ( is => 'rw', isa => 'Str' );
+has 'type'     => ( is => 'rw', isa => 'Str' );
+has 'pagenum'  => ( is => 'rw', isa => 'Int' );
 has 'totalpages' => ( is => 'rw', isa => 'Int' );
 has 'totalitems' => ( is => 'rw', isa => 'Int' );
+
+# these for MediaEnclosure
+has 'media_meta' => ( is => 'rw', isa => 'HashRef' );
+has 'crop'       => ( is => 'rw', isa => 'Str' );
+has 'format'     => ( is => 'rw', isa => 'Str' );
+has 'codec'      => ( is => 'rw', isa => 'Str' );
+has 'duration'   => ( is => 'rw', isa => 'Str' );
+has 'width'      => ( is => 'rw', isa => 'Str' );
+has 'height'     => ( is => 'rw', isa => 'Str' );
+has 'resolution' => ( is => 'rw', isa => 'Str' );
 
 sub options {
     my $self = shift;
