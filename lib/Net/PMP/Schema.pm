@@ -3,7 +3,7 @@ use Moose;
 use Carp;
 use Data::Dump qw( dump );
 
-our $VERSION = '0.004';
+our $VERSION = '0.005';
 
 has 'definitions' => ( is => 'ro', isa => 'HashRef', required => 1, );
 has 'description' => ( is => 'ro', isa => 'Str',     required => 1, );

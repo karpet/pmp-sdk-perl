@@ -4,7 +4,7 @@ use Carp;
 use Data::Dump qw( dump );
 use Net::PMP::CollectionDoc::Item;
 
-our $VERSION = '0.004';
+our $VERSION = '0.005';
 
 has 'items' => ( is => 'rw', isa => 'ArrayRef', required => 1 );
 has 'total' => ( is => 'ro', isa => 'Int',      required => 1 );
