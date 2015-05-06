@@ -1,5 +1,8 @@
 Revision history for Net-PMP-Client
 
+0.006 06 May 2015
+ - add PMP_CLIENT_CONFIG support to Client to match CLI
+
 0.005 05 May 2015
  - fix unit tests to match newer sandbox and server-side API
  - fix CollectionDocLink coercion to allow for media enclosures

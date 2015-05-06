@@ -4,7 +4,7 @@ use warnings;
 use Net::PMP::Client;
 use Net::PMP::CollectionDoc;
 
-our $VERSION = '0.005';
+our $VERSION = '0.006';
 
 sub client {
     my $class = shift;
